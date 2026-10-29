@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "outDir": "dist",
+    "rootDir": ".",
+    "sourceMap": true,
+    "types": ["node"],
+    "paths": {
+      "openapi-agentify": ["./src/index.ts"],
+      "openapi-agentify/next": ["./src/adapters/next.ts"]
+    }
+  },
+  "include": ["src", "test", "examples/orders-api/**/*.ts"],
+  "exclude": ["node_modules", "dist", "examples/orders-api/next", "test/fixtures", "test/.tmp"]
+}

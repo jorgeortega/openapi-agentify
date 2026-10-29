@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.local
+*.log
+.agentify/
+.next/
+next-env.d.ts
+test/.tmp/
+*.tsbuildinfo
