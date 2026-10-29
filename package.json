@@ -72,6 +72,7 @@
     "demo:hono": "tsx examples/orders-api/hono/server.ts",
     "demo:fastify": "tsx examples/orders-api/fastify/server.ts",
     "demo:next": "tsx examples/orders-api/next/server.ts",
+    "demo:stdio": "tsx examples/orders-api/stdio.ts",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {

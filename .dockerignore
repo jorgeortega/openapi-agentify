@@ -1,0 +1,12 @@
+node_modules
+dist
+coverage
+.git
+.github
+.claude
+.env
+.env.local
+*.log
+.agentify
+.next
+test/.tmp

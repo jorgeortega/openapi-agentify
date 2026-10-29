@@ -6,6 +6,10 @@ All notable changes to openapi-agentify are recorded here. The format follows
 
 ## Unreleased
 
+- `examples/orders-api/stdio.ts` (`npm run demo:stdio`): the Express demo as a
+  stdio MCP server, and a `Dockerfile` that runs it, for Glama. Neither ships
+  in the npm package.
+
 ## 0.1.0 — 2026-10-29
 
 The first open-source release: the core of the Latitude 10 Agentify kit,
