@@ -11,7 +11,7 @@ Try it without installing anything: the example Orders API runs in your
 browser, and `npm run try` or `npm run inspect` (the MCP Inspector) talks to
 its `/mcp`.
 
-<!-- The demo GIF goes here once recorded: `vhs docs/demo.tape` writes docs/demo.gif. -->
+![openapi-agentify scoring a thin Orders API spec at 54/100, improving it with rule-based fixes, and scoring it again at 96/100](docs/demo.gif)
 
 Three lines on Express:
 
