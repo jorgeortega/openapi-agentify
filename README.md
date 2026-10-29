@@ -184,10 +184,11 @@ curl -s localhost:3000/llms.txt
 
 For MCP clients that start a process instead of calling a URL, `npm run
 demo:stdio` serves the Express version over stdio: each message is relayed to
-its `/mcp`, through the same middleware. The repo's `Dockerfile` runs it
-(`docker build -t openapi-agentify-demo . && docker run -i --rm
-openapi-agentify-demo`); it is how the demo is listed on Glama, and it is not
-part of the npm package.
+its `/mcp`, through the same middleware, with the tool definitions
+`improve --accept` wrote (`examples/orders-api/stdio.tools.json`, readiness
+96). The repo's `Dockerfile` runs it (`docker build -t openapi-agentify-demo .
+&& docker run -i --rm openapi-agentify-demo`); it is how the demo is listed on
+Glama, and it is not part of the npm package.
 
 ## Docs
 

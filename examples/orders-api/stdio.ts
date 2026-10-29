@@ -18,7 +18,9 @@ import { loadExampleConfig } from "./load-config.js";
 // stdout carries only JSON-RPC.
 console.log = console.error;
 
-const config = await loadExampleConfig(resolve(dirname(fileURLToPath(import.meta.url)), "express"));
+// The tool definitions `openapi-agentify improve --accept` wrote for the
+// demo spec (readiness 54 → 96), so stdio clients see the reviewed tools.
+const config = { ...(await loadExampleConfig(resolve(dirname(fileURLToPath(import.meta.url)), "express"))), tools: "./stdio.tools.json" };
 const server = createExpressApp(config).listen(0, "127.0.0.1");
 await new Promise<void>((ok, fail) => server.once("listening", ok).once("error", fail));
 const endpoint = `http://127.0.0.1:${(server.address() as AddressInfo).port}/mcp`;

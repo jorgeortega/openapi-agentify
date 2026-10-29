@@ -13,6 +13,7 @@ import { findSpec, init, wireEntry } from "../src/cli/init.js";
 import { detectProject } from "../src/cli/project.js";
 import { draftSpec, guessOperationId, toOpenApiPath } from "../src/draft/draft.js";
 import { importOpenApi } from "../src/openapi/convert.js";
+import { operationTool } from "../src/mcp/operation-tool.js";
 import { readManifest } from "../src/openapi/manifest.js";
 import { ordersSpec } from "./helpers.js";
 
@@ -293,6 +294,14 @@ describe("agentify improve", () => {
     const list = r.manifest.tools.find((t) => t.name === "listOrders")!.suggestions!;
     expect(list.params!.status).toBe("Only orders with this status. One of: open, paid, refunded.");
     expect(r.manifest.tools.find((t) => t.name === "get2")!.suggestions!.examples![0]!.arguments).toEqual({ id: "order_123" });
+  });
+
+  it("accepted parameter descriptions reach tools/list", async () => {
+    const r = await improve(ordersSpec, importOpenApi(ordersSpec).manifest, { accept: true });
+    const tool = operationTool(r.manifest.tools.find((t) => t.name === "listOrders")!, 1_000_000);
+    expect(tool.inputSchema.properties!.status).toEqual({ type: "string", description: "Only orders with this status. One of: open, paid, refunded." });
+    const unaccepted = await improve(ordersSpec, importOpenApi(ordersSpec).manifest);
+    expect(operationTool(unaccepted.manifest.tools.find((t) => t.name === "listOrders")!, 1_000_000).inputSchema.properties!.status).toEqual({ type: "string" });
   });
 
   it("acceptAll keeps a tool name you chose", () => {
