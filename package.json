@@ -1,6 +1,6 @@
 {
   "name": "openapi-agentify",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Turn the API you already run into an MCP server: one middleware, from your OpenAPI spec, in-process. Express, Hono, Fastify and Next.js.",
   "license": "MIT",
   "author": "October Moon LLC",

@@ -4,7 +4,7 @@ All notable changes to openapi-agentify are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow
 [Semantic Versioning](https://semver.org/).
 
-## Unreleased
+## 0.1.1 — 2026-10-29
 
 - Readiness rules 1.0.4, the same as openapi-agent-check and latitude10.tech:
   `$ref`s with percent-encoded segments (`#/paths/~1orders~1%7Bid%7D`, as the
