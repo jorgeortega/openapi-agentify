@@ -1,0 +1,33 @@
+name: Framework adapter request
+description: Ask for (or offer) an adapter for another framework or runtime.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: Adapters are small; "Adding a framework adapter" in CONTRIBUTING.md lists what one needs. Offers to build one are very welcome.
+  - type: input
+    id: framework
+    attributes:
+      label: Framework and version
+      placeholder: Koa 3, Elysia 1.3, NestJS 11 (Express or Fastify platform)…
+    validations:
+      required: true
+  - type: textarea
+    id: dispatch
+    attributes:
+      label: How could a tool call reach the app in-process?
+      description: The framework's way to run a request without a socket, if you know it (Hono has app.fetch(), Fastify app.inject(), Koa's app.callback() is a Node request listener).
+  - type: textarea
+    id: why
+    attributes:
+      label: What you're building
+      description: Your API, and why the existing adapters (or dispatch mode "http") don't fit.
+    validations:
+      required: true
+  - type: dropdown
+    id: help
+    attributes:
+      label: Would you open the pull request?
+      options: ["Yes", "With some guidance", "No"]
+    validations:
+      required: true
