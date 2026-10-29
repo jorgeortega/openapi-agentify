@@ -1,0 +1,41 @@
+name: Bug report
+description: Something doesn't work as documented.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Security problems go to info@latitude10.tech, not here (see SECURITY.md).
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: How to reproduce
+      description: The smallest config, spec excerpt and request that show it (an MCP message, a curl command).
+      render: shell
+    validations:
+      required: true
+  - type: dropdown
+    id: framework
+    attributes:
+      label: Framework
+      options: [Express 5, Express 4, Hono, Fastify, Next.js, Not framework-specific]
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      placeholder: openapi-agentify 0.1.0, Node 22.13, express 5.2.1
+    validations:
+      required: true
+  - type: input
+    id: client
+    attributes:
+      label: MCP client and protocol version
+      placeholder: "@modelcontextprotocol/client 2.3.0, 2026-07-28"
