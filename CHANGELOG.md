@@ -6,6 +6,10 @@ All notable changes to openapi-agentify are recorded here. The format follows
 
 ## Unreleased
 
+- Readiness rules 1.0.4, the same as openapi-agent-check and latitude10.tech:
+  `$ref`s with percent-encoded segments (`#/paths/~1orders~1%7Bid%7D`, as the
+  copies on APIs.guru have) resolve instead of failing, and a `$ref` that
+  leads nowhere counts as having no example. Two new conformance cases.
 - `examples/orders-api/stdio.ts` (`npm run demo:stdio`): the Express demo as a
   stdio MCP server, and a `Dockerfile` that runs it, for Glama. Neither ships
   in the npm package.

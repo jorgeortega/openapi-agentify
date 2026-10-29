@@ -1,7 +1,8 @@
 {
-  "rulesVersion": "1.0.3",
+  "rulesVersion": "1.0.4",
   "cases": [
     "collided-names",
+    "dangling-ref",
     "good",
     "integral-floats",
     "no-operations",
@@ -10,6 +11,7 @@
     "orders-accepted",
     "orders-thin",
     "passthrough-origin",
+    "percent-encoded-refs",
     "rule-descriptions",
     "rule-enums",
     "rule-error-responses",
@@ -27,5 +29,5 @@
     "tool-count-41",
     "yaml-input"
   ],
-  "sha256": "cfdf08038eec49bf06a24b09f78c7bc50cd766b7c6e7a048915003a6c2187ddb"
+  "sha256": "08de9eedab1cf5b2cfa2c3a7e1a4bff2748c7b61f579e126d49c313302e85b2b"
 }
