@@ -29,8 +29,20 @@ export function withIdempotencyParam(t: ManifestTool): ManifestTool {
   };
 }
 
+/**
+ * Accepted `params` suggestions describe the tool's arguments in tools/list,
+ * as they do in /openapi.json and llms.txt.
+ */
+export function withParamDescriptions(t: ManifestTool): ManifestTool {
+  const docs = t.suggestions?.accepted ? t.suggestions.params : undefined;
+  const props = (t.inputSchema.properties ?? {}) as Record<string, Record<string, unknown>>;
+  if (!docs || !Object.keys(docs).some((k) => props[k])) return t;
+  const next = Object.fromEntries(Object.entries(props).map(([k, v]) => [k, docs[k] ? { ...v, description: docs[k] } : v]));
+  return { ...t, inputSchema: { ...t.inputSchema, properties: next } };
+}
+
 export function operationTool(entry: ManifestTool, maxResponseBytes: number): ToolDefinition {
-  const t = withIdempotencyParam(entry);
+  const t = withParamDescriptions(withIdempotencyParam(entry));
   const text = effectiveText(t);
   return {
     name: t.name,

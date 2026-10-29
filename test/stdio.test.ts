@@ -27,7 +27,7 @@ describe(`stdio MCP server (${image ? `docker ${image}` : "node"})`, () => {
       send({ jsonrpc: "2.0", id: 2, method: "tools/list" });
       const list = await next();
       expect(list.id).toBe(2);
-      expect(list.result.tools.map((t: { name: string }) => t.name)).toContain("listOrders");
+      expect(list.result.tools.map((t: { name: string }) => t.name)).toEqual(["listOrders", "getOrder", "getSalesReport"]);
 
       send({ jsonrpc: "2.0", id: 3, method: "tools/call", params: { name: "listOrders", arguments: {} } });
       const call = await next();

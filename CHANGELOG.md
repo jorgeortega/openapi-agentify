@@ -9,6 +9,10 @@ All notable changes to openapi-agentify are recorded here. The format follows
 - `examples/orders-api/stdio.ts` (`npm run demo:stdio`): the Express demo as a
   stdio MCP server, and a `Dockerfile` that runs it, for Glama. Neither ships
   in the npm package.
+- tools/list now carries the parameter descriptions from accepted `improve`
+  suggestions, as /openapi.json and llms.txt already did.
+- The stdio demo serves the reviewed tool definitions
+  (`examples/orders-api/stdio.tools.json`).
 
 ## 0.1.0 — 2026-10-29
 
