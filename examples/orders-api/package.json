@@ -1,0 +1,20 @@
+{
+  "name": "orders-api-example",
+  "private": true,
+  "description": "The example Orders API (Express) with openapi-agentify: an MCP server at /mcp from its OpenAPI spec, in-process.",
+  "type": "module",
+  "scripts": {
+    "start": "tsx express/server.ts",
+    "try": "tsx try.ts",
+    "inspect": "npx -y @modelcontextprotocol/inspector --server-url http://localhost:3000/mcp --header \"x-api-key: demo-customer-key-0001\""
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "helmet": "^8.3.0",
+    "openapi-agentify": "^0.1.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}

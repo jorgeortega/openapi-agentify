@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
-import type { AgentifyConfig } from "../../src/config.js";
+import type { AgentifyConfig } from "openapi-agentify";
 
 /**
  * The example servers' config: AGENTIFY_CONFIG (point it at the

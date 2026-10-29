@@ -1,11 +1,12 @@
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { defineConfig } from "../../src/index.js";
+import { defineConfig } from "openapi-agentify";
 
 /**
  * Agentify for the example Orders API (used by the Express, Hono and Fastify
- * versions; the Next.js version has its own copy). In your app this file
- * imports from "openapi-agentify" and `openapi-agentify init` writes it.
+ * versions; the Next.js version has its own copy). `openapi-agentify init`
+ * writes one like it in your app. Inside this repo "openapi-agentify" is src/
+ * (tsconfig paths, vitest aliases); on StackBlitz it's the npm package.
  */
 export default defineConfig({
   name: "Orders API",

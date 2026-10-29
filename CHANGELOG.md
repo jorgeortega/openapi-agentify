@@ -13,6 +13,10 @@ All notable changes to openapi-agentify are recorded here. The format follows
   suggestions, as /openapi.json and llms.txt already did.
 - The stdio demo serves the reviewed tool definitions
   (`examples/orders-api/stdio.tools.json`).
+- `examples/orders-api` opens on StackBlitz: its own `package.json` installs
+  the published package, the Express version imports `openapi-agentify` by
+  name (in the repository that's still `src/`), and `npm run try` and
+  `npm run inspect` talk to its `/mcp`.
 
 ## 0.1.0 — 2026-10-29
 
