@@ -1,0 +1,8 @@
+{
+  "name": "orders-api-fastify",
+  "private": true,
+  "type": "module",
+  "main": "server.ts",
+  "scripts": { "start": "tsx server.ts" },
+  "dependencies": { "fastify": "^5.12.5" }
+}
