@@ -1,0 +1,6 @@
+{
+  "spec": "openapi.json",
+  "tools": null,
+  "authMode": "passthrough",
+  "baseUrl": "https://API.EXAMPLE.com:443/other"
+}

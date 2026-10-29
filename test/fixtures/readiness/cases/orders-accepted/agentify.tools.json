@@ -1,0 +1,327 @@
+{
+  "source": {
+    "spec": "openapi.json",
+    "title": "Orders API",
+    "version": "1.4.0",
+    "importedAt": "1970-01-01T00:00:00.000Z"
+  },
+  "baseUrl": "http://localhost:3000",
+  "tools": [
+    {
+      "name": "listOrders",
+      "enabled": true,
+      "operation": "GET /v1/orders",
+      "operationId": "listOrders",
+      "description": "GET /v1/orders",
+      "method": "GET",
+      "path": "/v1/orders",
+      "params": [
+        {
+          "name": "status",
+          "in": "query",
+          "arg": "status",
+          "required": false
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "arg": "limit",
+          "required": false
+        },
+        {
+          "name": "cursor",
+          "in": "query",
+          "arg": "cursor",
+          "required": false
+        }
+      ],
+      "body": null,
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "description": "Page size."
+          },
+          "cursor": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "scope": "api:read",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "suggestions": {
+        "title": "List orders",
+        "description": "Lists orders, filtered and paged with status, limit, cursor. Use it to find orders before acting on one. The response has orders, nextCursor.",
+        "params": {
+          "status": "Only orders with this status. One of: open, paid, refunded.",
+          "cursor": "Where to continue from: the cursor the previous page returned (nextCursor). Leave it out for the first page."
+        },
+        "examples": [
+          {
+            "description": "List orders",
+            "arguments": {
+              "limit": 10
+            }
+          }
+        ],
+        "source": "rules",
+        "accepted": true
+      }
+    },
+    {
+      "name": "createOrder",
+      "enabled": false,
+      "operation": "POST /v1/orders",
+      "title": "Create order",
+      "description": "Create order",
+      "method": "POST",
+      "path": "/v1/orders",
+      "params": [],
+      "body": {
+        "arg": "body",
+        "required": true,
+        "contentType": "application/json"
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "body": {
+            "type": "object",
+            "required": [
+              "customer",
+              "items"
+            ],
+            "properties": {
+              "customer": {
+                "type": "string",
+                "format": "email"
+              },
+              "items": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "sku",
+                    "qty"
+                  ],
+                  "properties": {
+                    "sku": {
+                      "type": "string",
+                      "enum": [
+                        "tea-green",
+                        "tea-black",
+                        "mug-blue",
+                        "kettle-steel"
+                      ]
+                    },
+                    "qty": {
+                      "type": "integer",
+                      "minimum": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "body"
+        ],
+        "additionalProperties": false
+      },
+      "scope": "api:write",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "suggestions": {
+        "operationId": "createOrder",
+        "description": "Creates an order from the fields in the body and returns it. It changes data: send an Idempotency-Key so a retry doesn't create two. The response has id, customer, items, totalCents, status, createdAt.",
+        "examples": [
+          {
+            "description": "Create an order",
+            "arguments": {
+              "body": {
+                "customer": "ada@example.com",
+                "items": [
+                  {
+                    "sku": "tea-green",
+                    "qty": 1
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "idempotencyKey": true,
+        "source": "rules",
+        "accepted": true
+      }
+    },
+    {
+      "name": "getOrder",
+      "enabled": true,
+      "operation": "GET /v1/orders/{id}",
+      "operationId": "get2",
+      "description": "GET /v1/orders/{id}",
+      "method": "GET",
+      "path": "/v1/orders/{id}",
+      "params": [
+        {
+          "name": "id",
+          "in": "path",
+          "arg": "id",
+          "required": true
+        }
+      ],
+      "body": null,
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "scope": "api:read",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "suggestions": {
+        "operationId": "getOrder",
+        "title": "Get an order",
+        "description": "Gets one order by its id, with all its fields. Answers 404 when there's no such order. The response has id, customer, items, totalCents, status, createdAt.",
+        "params": {
+          "id": "The order's id, as returned by the list and create operations."
+        },
+        "examples": [
+          {
+            "description": "Get an order",
+            "arguments": {
+              "id": "order_123"
+            }
+          }
+        ],
+        "source": "rules",
+        "accepted": true
+      }
+    },
+    {
+      "name": "refundOrder",
+      "enabled": false,
+      "operation": "POST /v1/orders/{id}/refund",
+      "operationId": "refundOrder",
+      "description": "Refund.",
+      "method": "POST",
+      "path": "/v1/orders/{id}/refund",
+      "params": [
+        {
+          "name": "id",
+          "in": "path",
+          "arg": "id",
+          "required": true
+        }
+      ],
+      "body": {
+        "arg": "body",
+        "required": false,
+        "contentType": "application/json"
+      },
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "body": {
+            "type": "object",
+            "properties": {
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "scope": "api:write",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "suggestions": {
+        "title": "Refund an order",
+        "description": "Refunds the order with this id. It changes data: check the order first, and don't repeat it on a timeout without an Idempotency-Key. The response has id, customer, items, totalCents, status, createdAt.",
+        "params": {
+          "id": "The order's id, as returned by the list and create operations."
+        },
+        "examples": [
+          {
+            "description": "Refund an order",
+            "arguments": {
+              "id": "order_123",
+              "body": {
+                "reason": "string"
+              }
+            }
+          }
+        ],
+        "idempotencyKey": true,
+        "source": "rules",
+        "accepted": true
+      }
+    },
+    {
+      "name": "getSalesReport",
+      "enabled": true,
+      "operation": "GET /v1/reports/sales",
+      "operationId": "getSalesReport",
+      "title": "Sales report",
+      "description": "Sales report\n\nTotals for paid orders: how many, how much in cents, and how many orders include each SKU.",
+      "method": "GET",
+      "path": "/v1/reports/sales",
+      "params": [],
+      "body": null,
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "scope": "api:read",
+      "price": "0.01",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ]
+}

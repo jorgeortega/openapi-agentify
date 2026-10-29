@@ -1,0 +1,1 @@
+{ "name": "shop-api", "version": "2.1.0", "main": "src/server.js", "scripts": { "start": "node src/server.js" }, "dependencies": { "express": "^4.21.2" } }

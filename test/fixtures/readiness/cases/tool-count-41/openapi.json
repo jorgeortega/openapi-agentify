@@ -1,0 +1,1914 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Many tools",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com"
+    }
+  ],
+  "security": [
+    {
+      "apiKey": []
+    }
+  ],
+  "paths": {
+    "/alpha": {
+      "get": {
+        "operationId": "getAlpha",
+        "summary": "Get the alpha",
+        "description": "Returns the alpha resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "alpha_1",
+                  "name": "alpha"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bravo": {
+      "get": {
+        "operationId": "getBravo",
+        "summary": "Get the bravo",
+        "description": "Returns the bravo resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "bravo_1",
+                  "name": "bravo"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/charlie": {
+      "get": {
+        "operationId": "getCharlie",
+        "summary": "Get the charlie",
+        "description": "Returns the charlie resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "charlie_1",
+                  "name": "charlie"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/delta": {
+      "get": {
+        "operationId": "getDelta",
+        "summary": "Get the delta",
+        "description": "Returns the delta resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "delta_1",
+                  "name": "delta"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/echo": {
+      "get": {
+        "operationId": "getEcho",
+        "summary": "Get the echo",
+        "description": "Returns the echo resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "echo_1",
+                  "name": "echo"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/foxtrot": {
+      "get": {
+        "operationId": "getFoxtrot",
+        "summary": "Get the foxtrot",
+        "description": "Returns the foxtrot resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "foxtrot_1",
+                  "name": "foxtrot"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/golf": {
+      "get": {
+        "operationId": "getGolf",
+        "summary": "Get the golf",
+        "description": "Returns the golf resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "golf_1",
+                  "name": "golf"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hotel": {
+      "get": {
+        "operationId": "getHotel",
+        "summary": "Get the hotel",
+        "description": "Returns the hotel resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "hotel_1",
+                  "name": "hotel"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/india": {
+      "get": {
+        "operationId": "getIndia",
+        "summary": "Get the india",
+        "description": "Returns the india resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "india_1",
+                  "name": "india"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/juliet": {
+      "get": {
+        "operationId": "getJuliet",
+        "summary": "Get the juliet",
+        "description": "Returns the juliet resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "juliet_1",
+                  "name": "juliet"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/kilo": {
+      "get": {
+        "operationId": "getKilo",
+        "summary": "Get the kilo",
+        "description": "Returns the kilo resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "kilo_1",
+                  "name": "kilo"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lima": {
+      "get": {
+        "operationId": "getLima",
+        "summary": "Get the lima",
+        "description": "Returns the lima resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "lima_1",
+                  "name": "lima"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mike": {
+      "get": {
+        "operationId": "getMike",
+        "summary": "Get the mike",
+        "description": "Returns the mike resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "mike_1",
+                  "name": "mike"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/november": {
+      "get": {
+        "operationId": "getNovember",
+        "summary": "Get the november",
+        "description": "Returns the november resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "november_1",
+                  "name": "november"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oscar": {
+      "get": {
+        "operationId": "getOscar",
+        "summary": "Get the oscar",
+        "description": "Returns the oscar resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "oscar_1",
+                  "name": "oscar"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/papa": {
+      "get": {
+        "operationId": "getPapa",
+        "summary": "Get the papa",
+        "description": "Returns the papa resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "papa_1",
+                  "name": "papa"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quebec": {
+      "get": {
+        "operationId": "getQuebec",
+        "summary": "Get the quebec",
+        "description": "Returns the quebec resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "quebec_1",
+                  "name": "quebec"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/romeo": {
+      "get": {
+        "operationId": "getRomeo",
+        "summary": "Get the romeo",
+        "description": "Returns the romeo resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "romeo_1",
+                  "name": "romeo"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sierra": {
+      "get": {
+        "operationId": "getSierra",
+        "summary": "Get the sierra",
+        "description": "Returns the sierra resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "sierra_1",
+                  "name": "sierra"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tango": {
+      "get": {
+        "operationId": "getTango",
+        "summary": "Get the tango",
+        "description": "Returns the tango resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "tango_1",
+                  "name": "tango"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/uniform": {
+      "get": {
+        "operationId": "getUniform",
+        "summary": "Get the uniform",
+        "description": "Returns the uniform resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "uniform_1",
+                  "name": "uniform"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/victor": {
+      "get": {
+        "operationId": "getVictor",
+        "summary": "Get the victor",
+        "description": "Returns the victor resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "victor_1",
+                  "name": "victor"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/whiskey": {
+      "get": {
+        "operationId": "getWhiskey",
+        "summary": "Get the whiskey",
+        "description": "Returns the whiskey resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "whiskey_1",
+                  "name": "whiskey"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/xray": {
+      "get": {
+        "operationId": "getXray",
+        "summary": "Get the xray",
+        "description": "Returns the xray resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "xray_1",
+                  "name": "xray"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/yankee": {
+      "get": {
+        "operationId": "getYankee",
+        "summary": "Get the yankee",
+        "description": "Returns the yankee resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "yankee_1",
+                  "name": "yankee"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/zulu": {
+      "get": {
+        "operationId": "getZulu",
+        "summary": "Get the zulu",
+        "description": "Returns the zulu resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "zulu_1",
+                  "name": "zulu"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/amber": {
+      "get": {
+        "operationId": "getAmber",
+        "summary": "Get the amber",
+        "description": "Returns the amber resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "amber_1",
+                  "name": "amber"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/basil": {
+      "get": {
+        "operationId": "getBasil",
+        "summary": "Get the basil",
+        "description": "Returns the basil resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "basil_1",
+                  "name": "basil"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cedar": {
+      "get": {
+        "operationId": "getCedar",
+        "summary": "Get the cedar",
+        "description": "Returns the cedar resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "cedar_1",
+                  "name": "cedar"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/daisy": {
+      "get": {
+        "operationId": "getDaisy",
+        "summary": "Get the daisy",
+        "description": "Returns the daisy resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "daisy_1",
+                  "name": "daisy"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/elm": {
+      "get": {
+        "operationId": "getElm",
+        "summary": "Get the elm",
+        "description": "Returns the elm resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "elm_1",
+                  "name": "elm"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fern": {
+      "get": {
+        "operationId": "getFern",
+        "summary": "Get the fern",
+        "description": "Returns the fern resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "fern_1",
+                  "name": "fern"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ginkgo": {
+      "get": {
+        "operationId": "getGinkgo",
+        "summary": "Get the ginkgo",
+        "description": "Returns the ginkgo resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "ginkgo_1",
+                  "name": "ginkgo"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hazel": {
+      "get": {
+        "operationId": "getHazel",
+        "summary": "Get the hazel",
+        "description": "Returns the hazel resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "hazel_1",
+                  "name": "hazel"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/iris": {
+      "get": {
+        "operationId": "getIris",
+        "summary": "Get the iris",
+        "description": "Returns the iris resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "iris_1",
+                  "name": "iris"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jade": {
+      "get": {
+        "operationId": "getJade",
+        "summary": "Get the jade",
+        "description": "Returns the jade resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "jade_1",
+                  "name": "jade"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/kelp": {
+      "get": {
+        "operationId": "getKelp",
+        "summary": "Get the kelp",
+        "description": "Returns the kelp resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "kelp_1",
+                  "name": "kelp"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lotus": {
+      "get": {
+        "operationId": "getLotus",
+        "summary": "Get the lotus",
+        "description": "Returns the lotus resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "lotus_1",
+                  "name": "lotus"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/maple": {
+      "get": {
+        "operationId": "getMaple",
+        "summary": "Get the maple",
+        "description": "Returns the maple resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "maple_1",
+                  "name": "maple"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nettle": {
+      "get": {
+        "operationId": "getNettle",
+        "summary": "Get the nettle",
+        "description": "Returns the nettle resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "nettle_1",
+                  "name": "nettle"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/olive": {
+      "get": {
+        "operationId": "getOlive",
+        "summary": "Get the olive",
+        "description": "Returns the olive resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "olive_1",
+                  "name": "olive"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      }
+    }
+  }
+}

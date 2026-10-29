@@ -1,0 +1,106 @@
+# The same kind of spec as the JSON ones, written the way people write YAML.
+openapi: 3.1.0
+info:
+  title: Widgets API
+  version: 2026-10-05 # unquoted, so a YAML 1.1 parser makes it a date
+  description: Look up and create widgets.
+servers:
+  - url: https://api.example.com
+security:
+  - apiKey: []
+paths:
+  /widgets:
+    get:
+      operationId: listWidgets
+      summary: List widgets
+      description: >-
+        Lists the widgets you own, newest first, one page at a time. Pass the
+        next_cursor you got back as cursor to read the next page.
+      parameters:
+        - name: limit
+          in: query
+          description: How many widgets to return, 1 to 100.
+          schema: {type: integer, minimum: 1, maximum: 100}
+          example: 25
+        - name: cursor
+          in: query
+          description: The cursor from the previous page.
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Only widgets with this status.
+          schema:
+            type: string
+            enum: [active, archived]
+      responses:
+        200: # an unquoted number: a YAML key, not a string
+          description: A page of widgets.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: &widget
+                      type: object
+                      properties:
+                        id: {type: string}
+                        name: {type: string}
+                  next_cursor: {type: string}
+        400: &bad
+          description: The request was not valid.
+          content:
+            application/json:
+              schema: {type: object, properties: {error: {type: string}}}
+    post:
+      operationId: createWidget
+      summary: Create a widget
+      description: |
+        Creates a widget from the name in the body and returns it.
+        Send an Idempotency-Key so that a retry does not create a second one.
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          description: A unique key per logical request.
+          schema: {type: string}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name: {type: string}
+            example: {name: Sprocket}
+      responses:
+        201:
+          description: The new widget.
+          content:
+            application/json:
+              schema: *widget
+        422: *bad
+  /widgets/{id}:
+    get:
+      operationId: getWidget
+      summary: Get a widget
+      description: Returns one widget by id, with its name. Use it to check a widget before changing it.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The widget's id.
+          schema: {type: string}
+          example: wid_8f3k2
+      responses:
+        200:
+          description: The widget.
+          content:
+            application/json:
+              schema: *widget
+        404: *bad
+components:
+  securitySchemes:
+    apiKey: {type: apiKey, in: header, name: x-api-key}

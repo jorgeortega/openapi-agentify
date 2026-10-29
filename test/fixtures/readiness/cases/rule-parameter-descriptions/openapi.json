@@ -1,0 +1,452 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Widgets API",
+    "version": "1.0.0",
+    "description": "Look up, create and manage widgets."
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com"
+    }
+  ],
+  "security": [
+    {
+      "apiKey": []
+    }
+  ],
+  "paths": {
+    "/widgets": {
+      "get": {
+        "operationId": "listWidgets",
+        "summary": "List widgets",
+        "description": "Lists the widgets you own, newest first, one page at a time. Use status to narrow the list, then pass next_cursor back as cursor for the next page.",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "example": 25
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "description": "Opaque cursor from the previous page's next_cursor."
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Only widgets with this status.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "active",
+                "archived"
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort order. One of: created, name.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "session",
+            "in": "cookie",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of widgets.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WidgetList"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createWidget",
+        "summary": "Create a widget",
+        "description": "Creates a widget from the name and optional status in the body and returns it. Send an Idempotency-Key so a retry doesn't create a second one.",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "maxLength": 255
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewWidget"
+              },
+              "examples": {
+                "basic": {
+                  "summary": "A named widget",
+                  "value": {
+                    "name": "Sprocket"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The new widget.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Widget"
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/BadRequest"
+          }
+        }
+      }
+    },
+    "/widgets/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "The widget's id, like wid_8f3k2.",
+          "schema": {
+            "type": "string",
+            "pattern": "^wid_[a-z0-9]+$"
+          }
+        }
+      ],
+      "get": {
+        "operationId": "getWidget",
+        "summary": "Get a widget",
+        "description": "Returns one widget by id, with its status and when it was created. Use it to check a widget before changing it.",
+        "responses": {
+          "200": {
+            "description": "The widget.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Widget"
+                },
+                "example": {
+                  "id": "wid_8f3k2",
+                  "name": "Sprocket",
+                  "status": "active",
+                  "created_at": "2026-10-05T09:30:00Z"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateWidget",
+        "summary": "Update a widget",
+        "description": "Changes a widget's name or status and returns the updated widget. Only the fields you send are changed.",
+        "parameters": [
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "description": "A unique key per logical request; a retry with the same key returns the first response.",
+            "schema": {
+              "type": "string",
+              "maxLength": 255
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/merge-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WidgetPatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated widget.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Widget"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteWidget",
+        "summary": "Delete a widget",
+        "description": "Deletes one widget and everything on it.",
+        "x-agentify-examples": [
+          {
+            "description": "Delete a widget",
+            "arguments": {
+              "id": "wid_8f3k2"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted."
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/widgets/{id}/events": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "The widget's id, like wid_8f3k2.",
+          "schema": {
+            "type": "string",
+            "pattern": "^wid_[a-z0-9]+$"
+          }
+        }
+      ],
+      "get": {
+        "operationId": "listWidgetEvents",
+        "summary": "List a widget's events",
+        "description": "Lists what happened to a widget, newest first: when it was created, renamed or archived, and by whom. One page at a time.",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "How many events to return, 1 to 100.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "example": 10
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "description": "Return events after this event id.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "kind",
+            "in": "query",
+            "description": "Event kind code: 1 created, 2 renamed, 3 archived.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of events.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Event"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      }
+    },
+    "schemas": {
+      "Widget": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The widget's id."
+          },
+          "name": {
+            "type": "string",
+            "description": "What people call it."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "archived"
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "WidgetList": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Widget"
+            }
+          },
+          "next_cursor": {
+            "type": "string"
+          }
+        }
+      },
+      "NewWidget": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "archived"
+            ]
+          }
+        }
+      },
+      "WidgetPatch": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Sprocket Pro"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "archived"
+            ]
+          }
+        }
+      },
+      "Event": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "integer"
+          },
+          "at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "The request was not valid.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "There is no such widget.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    }
+  }
+}

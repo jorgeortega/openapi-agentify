@@ -1,0 +1,168 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API des cafés",
+    "version": "1.0.0",
+    "description": "Les cafés près de chez vous. 日本語のメニューもあります。"
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com"
+    }
+  ],
+  "security": [
+    {
+      "apiKey": []
+    }
+  ],
+  "paths": {
+    "/cafés": {
+      "get": {
+        "operationId": "listCafes",
+        "summary": "Lister les cafés ☕",
+        "description": "Les cafés du jour: 🍵🍵 thé et cafés bio",
+        "parameters": [
+          {
+            "name": "ville",
+            "in": "query",
+            "description": "La ville, par exemple Zürich ou 東京.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Zürich"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Combien de cafés renvoyer, de 1 à 50.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Le curseur de la page précédente.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Seulement les cafés dans cet état.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ouvert",
+                "fermé",
+                "bientôt"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Une page de cafés.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "nom": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requête invalide ❌"
+          }
+        }
+      }
+    },
+    "/cafés/{id}": {
+      "get": {
+        "operationId": "getCafe",
+        "summary": "Un café",
+        "description": "Le café 🍵🍵🍵 de la maison, vite",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "L'identifiant du café.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "café_42"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Le café.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nom": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Introuvable"
+          }
+        }
+      }
+    },
+    "/日本/メニュー": {
+      "get": {
+        "operationId": "menuNihon",
+        "summary": "日本語のメニュー 🍣",
+        "description": "今日のメニューを日本語で一覧にして返します。料理の名前、値段、アレルギー情報を含みます。",
+        "responses": {
+          "200": {
+            "description": "メニュー",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "名前": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "名前": "うどん 🍜"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "見つかりません"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      }
+    }
+  }
+}

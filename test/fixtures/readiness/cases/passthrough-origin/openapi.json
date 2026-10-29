@@ -1,0 +1,86 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Servers",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com/v1"
+    },
+    {
+      "url": "https://staging.example.com"
+    },
+    {
+      "url": "/relative"
+    },
+    {
+      "url": "ftp://files.example.com"
+    },
+    {
+      "url": "https://exa mple.com"
+    }
+  ],
+  "security": [
+    {
+      "apiKey": []
+    }
+  ],
+  "paths": {
+    "/ping": {
+      "get": {
+        "operationId": "getPing",
+        "summary": "Get the ping",
+        "description": "Returns the ping resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "ping_1",
+                  "name": "ping"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      }
+    }
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "score": 99,
+  "operations": 6,
+  "rules": [
+    {
+      "id": "operation-ids",
+      "title": "Every operation has a clear operationId",
+      "weight": 10,
+      "applicable": 6,
+      "passing": 6,
+      "share": 1,
+      "fix": "Give each operation an operationId that says what it does (listOrders, refundOrder). It becomes the tool name.",
+      "findings": []
+    },
+    {
+      "id": "summaries",
+      "title": "Every operation has a summary",
+      "weight": 8,
+      "applicable": 6,
+      "passing": 6,
+      "share": 1,
+      "fix": "Add a short summary (under 80 characters): clients show it as the tool's title.",
+      "findings": []
+    },
+    {
+      "id": "descriptions",
+      "title": "Descriptions say what the operation does, when to use it, and what it returns",
+      "weight": 10,
+      "applicable": 6,
+      "passing": 6,
+      "share": 1,
+      "fix": "Write a description of at least 40 characters per operation, different from the others: models pick tools by it.",
+      "findings": []
+    },
+    {
+      "id": "parameter-descriptions",
+      "title": "Parameters are described",
+      "weight": 8,
+      "applicable": 13,
+      "passing": 11,
+      "share": 0.8461538461538461,
+      "fix": "Describe each parameter: its meaning, format and allowed values.",
+      "findings": [
+        {
+          "rule": "parameter-descriptions",
+          "where": "GET /widgets query:limit",
+          "message": "parameter limit has no description"
+        },
+        {
+          "rule": "parameter-descriptions",
+          "where": "POST /widgets header:Idempotency-Key",
+          "message": "parameter Idempotency-Key has no description"
+        }
+      ]
+    },
+    {
+      "id": "enums",
+      "title": "Parameters with a fixed set of values list them",
+      "weight": 4,
+      "applicable": 2,
+      "passing": 2,
+      "share": 1,
+      "fix": "Give status/sort/type-like parameters an enum (or list the values in the description).",
+      "findings": []
+    },
+    {
+      "id": "examples",
+      "title": "Operations have an example",
+      "weight": 6,
+      "applicable": 6,
+      "passing": 6,
+      "share": 1,
+      "fix": "Add an example for each operation (a parameter, request or response example): models copy examples.",
+      "findings": []
+    },
+    {
+      "id": "json-bodies",
+      "title": "Request bodies are JSON",
+      "weight": 5,
+      "applicable": 2,
+      "passing": 2,
+      "share": 1,
+      "fix": "Accept application/json for request bodies agents send (form and multipart bodies can't be tool calls).",
+      "findings": []
+    },
+    {
+      "id": "response-schemas",
+      "title": "Success responses have a JSON schema",
+      "weight": 8,
+      "applicable": 6,
+      "passing": 6,
+      "share": 1,
+      "fix": "Describe what a 2xx response contains with a JSON schema, so agents know what they'll get back.",
+      "findings": []
+    },
+    {
+      "id": "error-responses",
+      "title": "Errors are described",
+      "weight": 6,
+      "applicable": 6,
+      "passing": 6,
+      "share": 1,
+      "fix": "Document the errors an operation returns (400, 404, 409…) so agents can recover instead of retrying blindly.",
+      "findings": []
+    },
+    {
+      "id": "pagination",
+      "title": "List endpoints are paginated",
+      "weight": 6,
+      "applicable": 2,
+      "passing": 2,
+      "share": 1,
+      "fix": "Give list operations a limit and a cursor (or page) parameter: an agent can't read ten thousand rows.",
+      "findings": []
+    },
+    {
+      "id": "security",
+      "title": "How to authenticate is described",
+      "weight": 8,
+      "applicable": 1,
+      "passing": 1,
+      "share": 1,
+      "fix": "Describe your auth in components.securitySchemes and apply it with security.",
+      "findings": []
+    },
+    {
+      "id": "idempotency",
+      "title": "Writes have an idempotency story",
+      "weight": 5,
+      "applicable": 2,
+      "passing": 2,
+      "share": 1,
+      "fix": "Accept an Idempotency-Key header on POST/PATCH (Agentify honours it for agents), so a retry doesn't do the work twice.",
+      "findings": []
+    },
+    {
+      "id": "tool-count",
+      "title": "A manageable number of tools, with distinct names",
+      "weight": 4,
+      "applicable": 1,
+      "passing": 1,
+      "share": 1,
+      "fix": "Keep enabled tools to about 40 per server (models choose worse from long lists), and give operations distinct operationIds.",
+      "findings": []
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,176 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Floats written whole",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com"
+    }
+  ],
+  "security": [
+    {
+      "apiKey": []
+    }
+  ],
+  "paths": {
+    "/prices": {
+      "get": {
+        "operationId": "listPrices",
+        "summary": "List prices",
+        "description": "Lists prices at or above a minimum, one page at a time. Prices are in dollars and move in steps of half a dollar.",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "How many prices to return, 1 to 100.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1.0,
+              "maximum": 100.0,
+              "default": 20.0
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "The cursor from the previous page.",
+            "schema": {
+              "type": "string",
+              "minLength": 1.0,
+              "maxLength": 10.0
+            }
+          },
+          {
+            "name": "min_price",
+            "in": "query",
+            "description": "Only prices at or above this, in dollars.",
+            "schema": {
+              "type": "number",
+              "minimum": 0.0,
+              "exclusiveMaximum": 1000.0,
+              "multipleOf": 0.5
+            },
+            "example": 12.0
+          },
+          {
+            "name": "ratio",
+            "in": "query",
+            "description": "A share between 0 and 1.",
+            "schema": {
+              "type": "number",
+              "exclusiveMinimum": 0.0,
+              "maximum": 1.0,
+              "default": 0.5
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of prices.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "maxItems": 50.0,
+                      "items": {
+                        "type": "number",
+                        "enum": [
+                          1.0,
+                          2.0,
+                          3.5
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was not valid."
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPrice",
+        "summary": "Create a price",
+        "description": "Creates a price from the amount and the quantity break in the body, and returns it. Send an Idempotency-Key to make a retry safe.",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A unique key per logical request.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount"
+                ],
+                "properties": {
+                  "amount": {
+                    "type": "number",
+                    "minimum": 0.0,
+                    "multipleOf": 0.5,
+                    "example": 12.0
+                  },
+                  "quantity": {
+                    "type": "integer",
+                    "minimum": 1.0,
+                    "maximum": 1000.0,
+                    "default": 1.0
+                  },
+                  "adjustment": {
+                    "type": "number",
+                    "example": -0.0
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The new price.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "The body was not valid."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      }
+    }
+  }
+}

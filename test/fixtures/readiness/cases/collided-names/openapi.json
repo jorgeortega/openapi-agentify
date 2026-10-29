@@ -1,0 +1,501 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Names that collide",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com"
+    }
+  ],
+  "security": [
+    {
+      "apiKey": []
+    }
+  ],
+  "paths": {
+    "/widgets": {
+      "get": {
+        "operationId": "listWidgets",
+        "summary": "Get the widgets",
+        "description": "Lists the widgets you own, newest first, one page at a time, for agents that need to browse them.",
+        "responses": {
+          "200": {
+            "description": "A page.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "How many widgets to return.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 10
+          }
+        ]
+      },
+      "post": {
+        "operationId": "createWidget",
+        "summary": "Create createWidget",
+        "description": "Creates a widget from the name in the body and returns it. A disabled write tool still has a name.",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A unique key per logical request.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "name": "x"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "x_1",
+                  "name": "x"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/widgets/archived": {
+      "get": {
+        "operationId": "listWidgets",
+        "summary": "Get the archived",
+        "description": "Returns the archived widgets as one object, the same operationId as the list above.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "archived_1",
+                  "name": "archived"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/widgets/featured": {
+      "get": {
+        "operationId": "listWidgets",
+        "summary": "Get the featured",
+        "description": "Returns the featured widgets as one object, the same operationId as the list above, again.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "featured_1",
+                  "name": "featured"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/widgets/import": {
+      "post": {
+        "operationId": "createWidget",
+        "summary": "Create createWidget",
+        "description": "Imports widgets from the body and returns the count. Shares its operationId with the create above.",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "A unique key per logical request.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "name": "x"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "x_1",
+                  "name": "x"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/export": {
+      "get": {
+        "operationId": "exportWidgets",
+        "summary": "Get the export",
+        "description": "Returns the export resource with its id, name and current state, for agents that need to read it.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "export_1",
+                  "name": "export"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-agentify": {
+          "name": "export_3"
+        }
+      }
+    },
+    "/sync": {
+      "get": {
+        "operationId": "sync_2",
+        "summary": "Get the sync",
+        "description": "Returns when the last sync ran. Its operationId really ends in _2, so its name is not a collision.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "sync_1",
+                  "name": "sync"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/feeds": {
+      "get": {
+        "operationId": "list feeds",
+        "summary": "Get the feeds",
+        "description": "Returns the feeds you follow. The space becomes an underscore in the tool name list_feeds.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "feeds_1",
+                  "name": "feeds"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/feed": {
+      "get": {
+        "operationId": "list/feeds",
+        "summary": "Get the feed",
+        "description": "Returns the feed you follow most. The slash also becomes an underscore, so this name is taken.",
+        "responses": {
+          "200": {
+            "description": "The resource.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "feed_1",
+                  "name": "feed"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "An error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      }
+    }
+  }
+}
