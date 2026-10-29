@@ -1,4 +1,5 @@
 import { guessOperationId } from "../draft/draft.js";
+import { pointerSegment } from "../openapi/convert.js";
 import type { Manifest, ManifestTool, ToolSuggestions } from "../openapi/manifest.js";
 import { exampleArguments, exampleValue } from "../surfaces/model.js";
 
@@ -21,7 +22,7 @@ const AMBIGUOUS = /^(get|post|put|patch|delete|head|handler|handle|default|op|op
 function deref(doc: Json, v: any, depth = 0): any {
   if (depth > 10 || !v || typeof v !== "object" || typeof v.$ref !== "string" || !v.$ref.startsWith("#/")) return v;
   let cur: any = doc;
-  for (const p of v.$ref.slice(2).split("/")) cur = cur?.[p.replace(/~1/g, "/").replace(/~0/g, "~")];
+  for (const p of v.$ref.slice(2).split("/")) cur = cur?.[pointerSegment(p)];
   return deref(doc, cur, depth + 1);
 }
 

@@ -51,9 +51,24 @@ export function isBlockedHeader(name: string): boolean {
 }
 const MAX_DEPTH = 24;
 
+/**
+ * One segment of a `$ref`'s JSON pointer as the key it names. A `$ref` is a URI fragment, so the
+ * segment is percent-decoded first (RFC 6901 §6: `%7Bid%7D` is `{id}`), then `~1` and `~0` are
+ * unescaped. A segment that isn't valid percent-encoding (a stray `%`) is kept as it is.
+ */
+export function pointerSegment(segment: string): string {
+  let text = segment;
+  try {
+    text = decodeURIComponent(segment);
+  } catch {
+    // A stray % stays as it is.
+  }
+  return text.replace(/~1/g, "/").replace(/~0/g, "~");
+}
+
 function decodePointer(ref: string, doc: Json): unknown {
   if (!ref.startsWith("#")) throw new Error(`External $ref not supported: ${ref} (bundle the spec first, e.g. with redocly bundle)`);
-  const parts = ref.slice(1).split("/").slice(1).map((p) => decodeURIComponent(p).replace(/~1/g, "/").replace(/~0/g, "~"));
+  const parts = ref.slice(1).split("/").slice(1).map(pointerSegment);
   let cur: unknown = doc;
   for (const p of parts) {
     if (cur === null || typeof cur !== "object" || !(p in (cur as Json))) throw new Error(`Unresolvable $ref: ${ref}`);
