@@ -59,6 +59,7 @@
     "bin",
     "docs",
     "!docs/demo.tape",
+    "!docs/demo.gif",
     "!docs/good-first-issues.md",
     "README.md",
     "LICENSE",
