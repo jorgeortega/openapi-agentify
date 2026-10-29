@@ -1,9 +1,8 @@
 import cors from "cors";
 import express, { type NextFunction, type Request, type Response } from "express";
 import helmet from "helmet";
-import { agentify } from "../../../src/adapters/express.js";
-import type { AgentifyConfig } from "../../../src/config.js";
-import type { Agentify } from "../../../src/core.js";
+import type { Agentify, AgentifyConfig } from "openapi-agentify";
+import { agentify } from "openapi-agentify/express";
 import { createOrders, type OrdersDb } from "../shared/orders.js";
 
 /** The Orders API on Express 5, with the usual middleware (helmet, cors, a JSON body parser, a router). */

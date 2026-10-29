@@ -58,6 +58,8 @@
     "dist/src",
     "bin",
     "docs",
+    "!docs/demo.tape",
+    "!docs/good-first-issues.md",
     "README.md",
     "LICENSE",
     "CHANGELOG.md"

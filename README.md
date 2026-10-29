@@ -6,6 +6,22 @@
 [![npm](https://img.shields.io/npm/v/openapi-agentify)](https://www.npmjs.com/package/openapi-agentify)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/jorgeortega/openapi-agentify/tree/main/examples/orders-api)
+Try it without installing anything: the example Orders API runs in your
+browser, and `npm run try` or `npm run inspect` (the MCP Inspector) talks to
+its `/mcp`.
+
+<!-- The demo GIF goes here once recorded: `vhs docs/demo.tape` writes docs/demo.gif. -->
+
+Three lines on Express:
+
+```ts
+import { agentify } from "openapi-agentify/express";
+import { defineConfig } from "openapi-agentify";
+
+app.use(agentify(defineConfig({ name: "Acme Orders API", spec: "./openapi.yaml" }))); // first, before body parsers and auth
+```
+
 Add one middleware to your Express, Hono, Fastify or Next.js app. It reads
 your OpenAPI spec (or drafts one from your routes) and serves `/mcp` with one
 tool per operation. A tool call becomes the HTTP request the operation
@@ -36,7 +52,7 @@ entry file. Then point any MCP client at `http://localhost:3000/mcp`:
 npx @modelcontextprotocol/inspector   # Streamable HTTP, http://localhost:3000/mcp
 ```
 
-Or by hand, on Express:
+Or by hand, on Express: the three lines at the top, in context.
 
 ```ts
 import express from "express";
@@ -173,7 +189,10 @@ Every option is typed and commented in [`src/config.ts`](src/config.ts).
 
 `examples/orders-api` is the same small Orders API in Express, Hono, Fastify
 and Next.js, with its own API-key auth and a deliberately thin spec (it scores
-54; `improve --accept` brings it to 96):
+54; `improve --accept` brings it to 96). The Express version opens on
+[StackBlitz](https://stackblitz.com/github/jorgeortega/openapi-agentify/tree/main/examples/orders-api),
+and [its README](examples/orders-api/README.md) has the MCP Inspector
+commands. From a clone:
 
 ```bash
 git clone https://github.com/jorgeortega/openapi-agentify && cd openapi-agentify
@@ -197,19 +216,6 @@ Glama, and it is not part of the npm package.
 - [Surfaces](docs/surfaces.md): every discovery document and its standard
 - [Readiness](docs/readiness.md): the rules, `improve`, `sync` and `draft`
 
-## Hosted and paid
-
-openapi-agentify is the open core, MIT-licensed, and stays that way. If you'd
-rather not run it yourself, or you need the operational parts:
-
-- **Hosted MCP** at [latitude10.tech/platform/mcp](https://latitude10.tech/platform/mcp):
-  your OpenAPI document served as an MCP server, with sealed upstream
-  credentials, analytics and sign-in through your identity provider.
-- **The Latitude 10 Agentify kit** (paid) builds on this package with its own
-  agent keys, OAuth, per-agent rate limits, usage metering and x402
-  pay-per-call, all attached through the hooks in
-  [docs/extending.md](docs/extending.md).
-
 ## Contributing
 
 Issues and pull requests are welcome: see [CONTRIBUTING.md](CONTRIBUTING.md).
@@ -218,3 +224,14 @@ Security reports: [SECURITY.md](SECURITY.md).
 ## License
 
 [MIT](LICENSE) © 2026 October Moon LLC
+
+## Who maintains it
+
+Jorge Ortega maintains openapi-agentify at [Latitude 10](https://latitude10.tech)
+(October Moon LLC), as the open core of the Latitude 10 Agentify kit, and it
+stays MIT. If you'd rather not run it yourself,
+[Hosted MCP](https://latitude10.tech/platform/mcp) serves your OpenAPI
+document as an MCP server, with sealed upstream credentials, analytics and
+sign-in through your identity provider; the paid kit adds agent keys, OAuth,
+per-agent rate limits, usage metering and x402 pay-per-call on top of this
+package, through the hooks in [docs/extending.md](docs/extending.md).
